@@ -7,13 +7,15 @@ import net.bieli.repos.TimeMachine;
 
 public class FeedMill extends ProductList implements MachineActions, Producer, TimeMachine {
     private boolean isProccessed = false;
+    private ProductImpl proccessedProduct;
 
     public FeedMill(Integer limit) {
         super(limit);
     }
 
     @Override
-    public void run() {
+    public void run(ProductImpl productToPreccessed) {
+        proccessedProduct = productToPreccessed;
         start();
     }
 
@@ -38,7 +40,11 @@ public class FeedMill extends ProductList implements MachineActions, Producer, T
     }
 
     @Override
-    public Integer tick(ProductImpl product) {
+    public Integer tick() {
+        return nextTick(proccessedProduct);
+    }
+
+    private Integer nextTick(ProductImpl product) {
         Integer idx = super.list.indexOf(product);
         ProductImpl productStored = super.list.get(idx);
 

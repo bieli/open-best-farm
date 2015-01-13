@@ -66,12 +66,22 @@ public class Main {
         FeedMill feedMill = new FeedMill(limit);
 
         feedMill.add(product1);
-        feedMill.run();
+        feedMill.add(product2);
 
+        System.out.println("\n\n------");
+
+        feedMill.run(product1);
         while (feedMill.isProccessed()) {
-            System.out.println("\n   " + feedMill.tick(product1) + " -> feedMill.tick(product1)");
+            System.out.println("\n   " + feedMill.tick() + " -> feedMill.tick(product1)");
         }
+        feedMill.stop();
 
+        System.out.println("\n\n------");
+
+        feedMill.run(product2);
+        while (feedMill.isProccessed()) {
+            System.out.println("\n   " + feedMill.tick() + " -> feedMill.tick(product2)");
+        }
         feedMill.stop();
 
 
