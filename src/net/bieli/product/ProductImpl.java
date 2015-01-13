@@ -2,11 +2,11 @@ package net.bieli.product;
 
 public class ProductImpl implements Product {
     private ProductKind productKind;
-    private Integer points;
-    private Integer price;
-    private Integer stars;
-    private Integer ticks;
-    private Integer tick;
+    private Integer points = 0;
+    private Integer price = 0;
+    private Integer stars = 0;
+    private Integer ticks = 0;
+    private Integer tick = 0;
 
     public ProductImpl(ProductKind productKind) {
         this.productKind = productKind;
@@ -20,6 +20,10 @@ public class ProductImpl implements Product {
     @Override
     public int tick() {
         return tick++;
+    }
+
+    public int getTick() {
+        return tick;
     }
 
     @Override

@@ -11,6 +11,7 @@ public class Barn extends ProductList implements Storage {
     private Integer capacity = 0;
 
     public Barn(Integer capacity) {
+        super(capacity);
         this.capacity = capacity;
     }
 

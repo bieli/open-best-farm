@@ -5,6 +5,20 @@ import java.util.*;
 public class ProductList {
     protected List<ProductImpl> list = new ArrayList<ProductImpl>();
 
+    public ProductList(Integer limit) {
+        this.limit = limit;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    protected Integer limit = 0;
+
     public Integer getAllProductsCount() {
         return list.size();
     }

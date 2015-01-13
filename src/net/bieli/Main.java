@@ -57,12 +57,23 @@ public class Main {
 //        barn.add(product5);
 
         System.out.print(barn.report());
-        System.out.print("\n\n BUTTER count: " + barn.countByKind(ProductKind.BUTTER));
-        System.out.print("\n\n EGG count: " + barn.countByKind(ProductKind.EGG));
+        System.out.print("\n BUTTER count: " + barn.countByKind(ProductKind.BUTTER));
+        System.out.print("\n EGG count: " + barn.countByKind(ProductKind.EGG));
 
-        FeedMill feedMill = new FeedMill();
+
+
+        Integer limit = 2;
+        FeedMill feedMill = new FeedMill(limit);
 
         feedMill.add(product1);
         feedMill.run();
+
+        while (feedMill.isProccessed()) {
+            System.out.println("\n   " + feedMill.tick(product1) + " -> feedMill.tick(product1)");
+        }
+
+        feedMill.stop();
+
+
     }
 }
