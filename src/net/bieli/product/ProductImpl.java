@@ -5,6 +5,7 @@ public class ProductImpl implements Product {
     private Integer points;
     private Integer price;
     private Integer stars;
+    private Integer ticks;
     private Integer tick;
 
     public ProductImpl(ProductKind productKind) {
@@ -32,6 +33,7 @@ public class ProductImpl implements Product {
         if (!(productKind.points() == product.getKind().points())) return false;
         if (!(productKind.price() == product.getKind().price())) return false;
         if (!(productKind.stars() == product.getKind().stars())) return false;
+        if (!(productKind.ticks() == product.getKind().ticks())) return false;
 
         return true;
     }
@@ -42,6 +44,7 @@ public class ProductImpl implements Product {
         result = 31 * result + productKind.points();
         result = 31 * result + productKind.price();
         result = 31 * result + productKind.stars();
+        result = 31 * result + productKind.ticks();
         return result;
     }
 }

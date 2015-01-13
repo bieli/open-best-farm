@@ -60,9 +60,9 @@ public class Main {
         System.out.print("\n\n BUTTER count: " + barn.countByKind(ProductKind.BUTTER));
         System.out.print("\n\n EGG count: " + barn.countByKind(ProductKind.EGG));
 
-//        FeedMill feedMill = new FeedMill();
+        FeedMill feedMill = new FeedMill();
 
-//        feedMill.push(product6);
-//        feedMill.run();
+        feedMill.add(product1);
+        feedMill.run();
     }
 }

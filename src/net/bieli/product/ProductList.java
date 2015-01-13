@@ -30,7 +30,7 @@ public class ProductList {
 
         Set<ProductImpl> uniqueSet = new HashSet<ProductImpl>(list);
         report.append(String.format(
-                "| %8s | %8s |\n|----------|----------|\n",
+                "| %8s | %8s |\n+----------+----------+\n",
                 "name",
                 "count"
         ));

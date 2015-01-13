@@ -94,6 +94,24 @@ public class BarnTest {
         assertEquals(expectedAvailableCapacity, barn.getStorageAvailableCapacity());
     }
 
+    @Test
+    public void shouldGetCountByKindProducts() throws Exception {
+        // given
+        final Integer capacity = 3;
+        final Integer expectedKindEggs = 2;
+        Barn barn = new Barn(capacity);
+
+        ProductImpl product1 = new ProductImpl(ProductKind.EGG);
+        ProductImpl product2 = new ProductImpl(ProductKind.EGG);
+
+        // when
+        barn.add(product1);
+        barn.add(product2);
+
+        // then
+        assertEquals(expectedKindEggs, barn.countByKind(ProductKind.EGG));
+    }
+
     @Test(expected = CapacityExceededException.class)
     public void shouldThrowCapacityExceededExceptionWhenAddMoreThenMaxCapacity() throws Exception {
         // given
