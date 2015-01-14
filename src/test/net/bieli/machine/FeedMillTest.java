@@ -80,4 +80,50 @@ public class FeedMillTest {
         // then
         assertFalse(feedMill.isProccessed());
     }
+
+    @Test
+    public void shouldProccessingOnlyOneProductAtSametTime() throws Exception {
+        //given
+        ProductImpl product1 = new ProductImpl(ProductKind.EGG);
+        ProductImpl product2 = new ProductImpl(ProductKind.CORN);
+
+        Integer limit = 2;
+        FeedMill feedMill = new FeedMill(limit);
+
+        feedMill.add(product1);
+        feedMill.add(product2);
+
+        // when
+
+        // then
+        assertFalse(feedMill.isProccessed());
+
+        feedMill.run(product1);
+        // then
+        assertTrue(feedMill.isProccessed());
+
+        while (feedMill.isProccessed()) {
+            // then
+            assertTrue(feedMill.isProccessed());
+            feedMill.tick();
+        }
+        feedMill.stop();
+
+
+        // then
+        assertFalse(feedMill.isProccessed());
+
+        feedMill.run(product2);
+
+        // then
+        assertTrue(feedMill.isProccessed());
+
+        while (feedMill.isProccessed()) {
+            feedMill.tick();
+        }
+        feedMill.stop();
+
+        // then
+        assertFalse(feedMill.isProccessed());
+    }
 }
