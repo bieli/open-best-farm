@@ -1,5 +1,7 @@
 package net.bieli.product;
 
+import net.bieli.excaptions.CapacityExceededException;
+
 import java.util.*;
 
 public class ProductList {
@@ -36,6 +38,10 @@ public class ProductList {
     }
 
     public void add(ProductImpl product) throws Exception {
+        if (list.size() >= limit) {
+            throw new CapacityExceededException("Product list is FULL ! Please, consume product first and next try ADD !");
+        }
+
         list.add(product);
     }
 

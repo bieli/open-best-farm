@@ -61,12 +61,12 @@ public class Main {
         System.out.print("\n EGG count: " + barn.countByKind(ProductKind.EGG));
 
 
-
         Integer limit = 2;
         FeedMill feedMill = new FeedMill(limit);
 
         feedMill.add(product1);
         feedMill.add(product2);
+//        feedMill.add(product3);
 
         System.out.println("\n\n------");
 
