@@ -1,4 +1,4 @@
-package net.bieli;
+package main.java.bieli;
 
 /*
 interface Producer {
@@ -45,21 +45,24 @@ public class Main {
         ProductImpl product1 = new ProductImpl(ProductKind.EGG);
         ProductImpl product2 = new ProductImpl(ProductKind.CORN);
         ProductImpl product3 = new ProductImpl(ProductKind.EGG);
-//        ProductImpl product4 = new ProductImpl(ProductKind.MILK);
+        ProductImpl product4 = new ProductImpl(ProductKind.MILK);
 //        ProductImpl product5 = new ProductImpl(ProductKind.CREAM);
 //        ProductImpl product6 = new ProductImpl(ProductKind.BUTTER);
 
         barn.add(product1);
         barn.add(product2);
         barn.add(product3);
-//        barn.add(product4);
+        barn.add(product4);
 //        barn.add(product5);
 //        barn.add(product5);
 
         System.out.print(barn.report());
         System.out.print("\n BUTTER count: " + barn.countByKind(ProductKind.BUTTER));
         System.out.print("\n EGG count: " + barn.countByKind(ProductKind.EGG));
+        System.out.print("\n MILK count: " + barn.countByKind(ProductKind.MILK));
+        System.out.print("\n CREAM count: " + barn.countByKind(ProductKind.CREAM));
 
+        System.out.print("\n FeedMill \n");
 
         Integer limit = 2;
         FeedMill feedMill = new FeedMill(limit);
@@ -68,7 +71,7 @@ public class Main {
         feedMill.add(product2);
 //        feedMill.add(product3);
 
-        System.out.println("\n\n------");
+        System.out.println("\n\n------ feedMill.run product1");
 
         feedMill.run(product1);
         while (feedMill.isProccessed()) {
@@ -76,14 +79,15 @@ public class Main {
         }
         feedMill.stop();
 
-        System.out.println("\n\n------");
+        System.out.println("\n\n------ feedMill.stop product1");
+
+        System.out.println("\n\n------ feedMill.run product2");
 
         feedMill.run(product2);
         while (feedMill.isProccessed()) {
             System.out.println("\n   " + feedMill.tick() + " -> feedMill.tick(product2)");
         }
         feedMill.stop();
-
-
+        System.out.println("\n\n------ feedMill.stop product2");
     }
 }
