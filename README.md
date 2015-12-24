@@ -1,6 +1,7 @@
 Open best farm
 --------------
 
+[![Travis CI](https://travis-ci.org/bieli/open-best-farm.svg?branch=master)](https://travis-ci.org/bieli/open-best-farm)
 
 How to start
 ==============
