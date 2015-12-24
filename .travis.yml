@@ -3,8 +3,8 @@ jdk:
   - oraclejdk8
   - oraclejdk7
   - openjdk7
-sudo: false
-script:
-  - ./gradlew clean build
-  - ./gradlew check
 
+before_script:
+- chmod a+x gradlew
+
+script: ./gradlew build
