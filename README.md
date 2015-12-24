@@ -6,7 +6,10 @@ Open best farm
 How to start
 ==============
 
+```
+
 $ ./gradlew clean build run
+
 :clean
 :compileJava
 :compileGroovy UP-TO-DATE
@@ -22,6 +25,8 @@ $ ./gradlew clean build run
 :check
 :build
 :run
+
+
 |     name |    count |
 +----------+----------+
 |     CORN |        1 |
@@ -77,3 +82,5 @@ $ ./gradlew clean build run
 BUILD SUCCESSFUL
 
 Total time: 10.685 secs
+
+```
