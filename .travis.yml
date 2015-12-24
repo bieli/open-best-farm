@@ -5,5 +5,6 @@ jdk:
   - openjdk7
 sudo: false
 script:
+  - ./gradlew clean build
   - ./gradlew check
 
