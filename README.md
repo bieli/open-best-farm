@@ -87,10 +87,10 @@ Total time: 10.685 secs
 
 TODOs
 ==============
- [x] create repository with first conceptual version
- [ ] create document/concept with REST API for "farm like" games
- [ ] REST API prototype (with storage in RAM) with integration tests
- [ ] creating state machine prototype
- [ ] try to self-consume REST API service in simple game with GUI / UI
- [ ] implementing persistent storage (i.e. RIAK, Couchbase, Redis, MySQL/MariaDB, MongoDB, ...)
+- [x] create repository with first conceptual version
+- [ ] create document/concept with REST API for "farm like" games
+- [ ] REST API prototype (with storage in RAM) with integration tests
+- [ ] creating state machine prototype
+- [ ] try to self-consume REST API service in simple game with GUI / UI
+- [ ] implementing persistent storage (i.e. RIAK, Couchbase, Redis, MySQL/MariaDB, MongoDB, ...)
  
