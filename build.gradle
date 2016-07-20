@@ -14,7 +14,7 @@ apply plugin: 'java'
 apply plugin: "groovy"
 apply plugin: 'application'
 
-mainClassName = 'main.java.bieli.Main'
+mainClassName = 'net.bieli.Main'
 
 version = "1.0"
 

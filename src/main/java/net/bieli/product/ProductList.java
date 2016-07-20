@@ -2,10 +2,17 @@ package net.bieli.product;
 
 import net.bieli.excaptions.CapacityExceededException;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class ProductList {
     protected List<ProductImpl> list = new ArrayList<ProductImpl>();
+    protected Map<String, Integer> kindCountsMap = new LinkedHashMap<>();
 
     public ProductList(Integer limit) {
         this.limit = limit;
@@ -26,8 +33,6 @@ public class ProductList {
     }
 
     public Integer countByKind(ProductKind productKind) {
-        Set<ProductImpl> uniqueSet = new HashSet<ProductImpl>(list);
-
         return Collections.frequency(list, new ProductImpl(productKind));
     }
 
@@ -48,7 +53,7 @@ public class ProductList {
     public String report() {
         StringBuilder report = new StringBuilder();
 
-        Set<ProductImpl> uniqueSet = new HashSet<ProductImpl>(list);
+        Set<ProductImpl> uniqueSet = new LinkedHashSet<>(list);
         report.append(String.format(
                 "| %8s | %8s |\n+----------+----------+\n",
                 "name",
@@ -56,6 +61,7 @@ public class ProductList {
         ));
 
         for (ProductImpl product : uniqueSet) {
+            kindCountsMap.put(product.getKind().name(), Collections.frequency(list, product));
             report.append(String.format(
                     "| %8s | %8d |\n",
                     product.getKind().name(),
@@ -64,5 +70,13 @@ public class ProductList {
         }
 
         return report.toString();
+    }
+
+    public Map<String, Integer> getKindCountsMapAfterReport() {
+        return kindCountsMap;
+    }
+
+    public Set<ProductImpl> getUniqueProductsSet() {
+        return new LinkedHashSet<>(list);
     }
 }

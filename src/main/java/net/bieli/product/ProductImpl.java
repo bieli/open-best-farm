@@ -51,4 +51,16 @@ public class ProductImpl implements Product {
         result = 31 * result + productKind.ticks();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "ProductImpl{" +
+                "productKind=" + productKind +
+                ", points=" + productKind.points() +
+                ", price=" + productKind.price() +
+                ", stars=" + productKind.stars() +
+                ", ticks=" + productKind.ticks() +
+                ", tick=" + tick +
+                '}';
+    }
 }
