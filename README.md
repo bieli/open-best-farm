@@ -8,7 +8,7 @@ How to start
 
 ```
 
-$ ./gradlew clean build run
+$ ./gradlew clean build test jacocoTestReport run
 
 :clean
 :compileJava
@@ -24,9 +24,8 @@ $ ./gradlew clean build run
 :test
 :check
 :build
+:jacocoTestReport
 :run
-
-
 |     name |    count |
 +----------+----------+
 |     CORN |        1 |
@@ -37,7 +36,7 @@ $ ./gradlew clean build run
  EGG count: 2
  MILK count: 1
  CREAM count: 0
- FeedMill
+ FeedMill 
 
 
 ------ feedMill.run product1
@@ -81,7 +80,7 @@ $ ./gradlew clean build run
 
 BUILD SUCCESSFUL
 
-Total time: 10.685 secs
+Total time: 14.566 secs
 
 ```
 
