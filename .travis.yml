@@ -15,7 +15,4 @@ after_success:
 script:
   - ./gradlew build
 
-<<<<<<< HEAD
 script: ./gradlew clean build test jacocoTestReport
-=======
->>>>>>> updating coveralls for travis CI
