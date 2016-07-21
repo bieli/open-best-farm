@@ -9,6 +9,11 @@ buildscript {
     }
 }
 
+plugins {
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.6.3'
+}
+
 apply plugin: "com.palantir.jacoco-full-report"
 apply plugin: 'java'
 apply plugin: "groovy"
@@ -31,12 +36,12 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.9'
 }
 
-
 jacocoTestReport {
     group = "Reporting"
     reports {
         xml.enabled true
         csv.enabled false
+        html.enabled true
         html.destination "${buildDir}/reports/coverage"
     }
 }

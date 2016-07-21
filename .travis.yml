@@ -1,8 +1,21 @@
+env:
+  global:
+    - COVERALLS_REPO_TOKEN=BumoRc2SfzlkhNY55yEnJHdX6Y2oPfAvr
+
 language: java
 jdk:
   - oraclejdk8
 
 before_script:
-- chmod a+x gradlew
+  - chmod a+x gradlew
 
+after_success:
+  - ./gradlew jacocoTestReport coveralls
+
+script:
+  - ./gradlew build
+
+<<<<<<< HEAD
 script: ./gradlew clean build test jacocoTestReport
+=======
+>>>>>>> updating coveralls for travis CI

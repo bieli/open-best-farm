@@ -1,10 +1,9 @@
-Open best farm
---------------
+# Open best farm [![Travis CI](https://travis-ci.org/bieli/open-best-farm.svg?branch=master)](https://travis-ci.org/bieli/open-best-farm) [![Coverage Status](https://coveralls.io/repos/github/bieli/open-best-farm/badge.svg?branch=master)](https://coveralls.io/github/bieli/open-best-farm?branch=master) #
+==============
 
-[![Travis CI](https://travis-ci.org/bieli/open-best-farm.svg?branch=master)](https://travis-ci.org/bieli/open-best-farm)
 
 How to start
-==============
+--------------
 
 ```
 
@@ -85,7 +84,8 @@ Total time: 14.566 secs
 ```
 
 TODOs
-==============
+-----
+
 - [x] create repository with first conceptual version
 - [ ] create document/concept with REST API for "farm like" games
 - [ ] REST API prototype (with storage in RAM) with integration tests
