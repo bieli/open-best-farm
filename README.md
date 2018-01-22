@@ -10,9 +10,6 @@ How to start
 $ ./gradlew clean build test jacocoTestReport run
 
 > Configure project :
-The ConfigurableReport.setDestination(Object) method has been deprecated and is scheduled to be removed in Gradle 5.0. Please use the method ConfigurableReport.setDestination(File) instead.
-        at build_895p4jfozgj6zftdes0yrvflt$_run_closure3$_closure6.doCall(/home/mbielak/Pulpit/_priv/projects/open-best-farm/build.gradle:45)
-
 > Task :run
 d780873e-f617-4770-8087-3ef617a770ff >> ProductImpl{productKind=EGG, points=1, price=3, stars=2, ticks=3, tick=0}
 4a76e1df-f985-4faf-b6e1-dff9856faf05 >> ProductImpl{productKind=CORN, points=2, price=2, stars=1, ticks=7, tick=0}
