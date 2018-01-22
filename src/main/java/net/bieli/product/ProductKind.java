@@ -1,5 +1,6 @@
 package net.bieli.product;
 
+
 public enum ProductKind {
     EGG    (1, 2, 3, 3),
     MILK   (4, 5, 6, 5),

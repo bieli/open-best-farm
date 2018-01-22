@@ -7,7 +7,7 @@ class ProductListSpec extends Specification {
     def "should set and get limit in ProductList"() {
         given:
         def limit = 100
-        def ProductList productList = new ProductList()
+        ProductList productList = new ProductList()
 
         when:
         productList.setLimit(limit)
@@ -19,7 +19,7 @@ class ProductListSpec extends Specification {
     def "should raise CapacityExceededException when limit exceed"() {
         given:
         def limit = 1
-        def ProductList productList = new ProductList(limit)
+        ProductList productList = new ProductList(limit)
 
         when:
         productList.add(new ProductImpl(ProductKind.CORN))
@@ -27,13 +27,13 @@ class ProductListSpec extends Specification {
 
         then:
         CapacityExceededException e = thrown()
-        e.message == "Product list is FULL ! Please, consume product first and next try ADD !"
+        e.message == "Product products is FULL ! Please, consume product first and next try ADD !"
     }
 
     def "should generate text report"() {
         given:
         def limit = 3
-        def ProductList productList = new ProductList(limit)
+        ProductList productList = new ProductList(limit)
 
         when:
         productList.add(new ProductImpl(ProductKind.BUTTER))

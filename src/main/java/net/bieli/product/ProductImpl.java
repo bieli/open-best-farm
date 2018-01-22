@@ -1,5 +1,6 @@
 package net.bieli.product;
 
+
 public class ProductImpl implements Product {
     private ProductKind productKind;
     private Integer points = 0;

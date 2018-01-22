@@ -4,8 +4,10 @@ import net.bieli.excaptions.CapacityExceededException;
 import net.bieli.product.ProductImpl;
 import net.bieli.product.ProductList;
 import net.bieli.repos.Storage;
+import net.bieli.tools.UuidGenerator;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Barn extends ProductList implements Storage {
     private Integer capacity = 0;
@@ -24,7 +26,7 @@ public class Barn extends ProductList implements Storage {
     }
 
     public List<ProductImpl> getAllProductsList() {
-        return super.list;
+        return super.products;
     }
 
     @Override
@@ -35,13 +37,12 @@ public class Barn extends ProductList implements Storage {
     }
 
     @Override
-    public void add(ProductImpl product) throws Exception {
+    public UUID add(ProductImpl product) throws Exception {
         if (capacity <= 0) {
             throw new CapacityExceededException("No more products in BARN - capacity exceed !");
         }
-        super.add(product);
         capacity--;
+        return super.add(product);
     }
-
 }
 

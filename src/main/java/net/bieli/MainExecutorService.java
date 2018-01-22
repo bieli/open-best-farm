@@ -5,6 +5,8 @@ import net.bieli.machine.FeedMill;
 import net.bieli.product.ProductImpl;
 import net.bieli.product.ProductKind;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,16 +27,20 @@ public class MainExecutorService {
         public FeedMill call() throws Exception {
 
             for (ProductImpl product : barn.getUniqueProductsSet()) {
-                System.out.println("\n\n------ feedMill.run - product: " + product.toString());
+                System.out.println("\n\n------ START: feedMill.run - product: " + product.toString());
 
                 feedMill.run(product);
                 while (feedMill.isProccessed()) {
                     TimeUnit.MILLISECONDS.sleep(1);
-                    System.out.println("\n   " + feedMill.tick() + " -> feedMill.tick(product) - product.getTick(): " + product.getTick());
+                    Integer tick = feedMill.tick();
+                    if (feedMill.isProccessed()) {
+                        Integer productTick = product.getTick();
+                        System.out.println("\n  -> feedMill.tick(): " + tick + ", product.getTick(): " + productTick);
+                    }
                 }
                 feedMill.stop();
 
-                System.out.println("\n\n------ feedMill.stop - product: " + product.toString());
+                System.out.println("\n\n------ STOP: feedMill.stop - product: " + product.toString());
             }
             return feedMill;
         }
@@ -44,36 +50,30 @@ public class MainExecutorService {
         ExecutorService executorService = Executors.newFixedThreadPool(4);
         Integer startCapacity = 10;
         Barn barn = new Barn(startCapacity);
+        List<ProductImpl> productList = new ArrayList<>();
 
-        ProductImpl product1 = new ProductImpl(ProductKind.EGG);
-        ProductImpl product2 = new ProductImpl(ProductKind.CORN);
-        ProductImpl product3 = new ProductImpl(ProductKind.EGG);
-        ProductImpl product4 = new ProductImpl(ProductKind.MILK);
-        ProductImpl product5 = new ProductImpl(ProductKind.CREAM);
-        ProductImpl product6 = new ProductImpl(ProductKind.BUTTER);
-        ProductImpl product7 = new ProductImpl(ProductKind.EGG);
+        productList.add(new ProductImpl(ProductKind.EGG));
+        productList.add(new ProductImpl(ProductKind.CORN));
+        productList.add(new ProductImpl(ProductKind.EGG));
+        productList.add(new ProductImpl(ProductKind.MILK));
+        productList.add(new ProductImpl(ProductKind.CREAM));
+        productList.add(new ProductImpl(ProductKind.BUTTER));
+        productList.add(new ProductImpl(ProductKind.EGG));
 
-        barn.add(product1);
-        barn.add(product2);
-        barn.add(product3);
-        barn.add(product4);
-        barn.add(product5);
-        barn.add(product6);
-        barn.add(product7);
+        for (ProductImpl product : productList) {
+            System.out.print(barn.add(product) + " >> " + product.toString() + "\n");
+        }
 
+        System.out.print("\n\n ============= Barn report ============= \n\n");
         System.out.print(barn.report());
-        System.out.print("\n FeedMill \n");
 
+        System.out.print("\n\n =============== FeedMill ============== \n");
         Integer limit = startCapacity;
         FeedMill feedMill = new FeedMill(limit);
 
-        feedMill.add(product1);
-        feedMill.add(product2);
-        feedMill.add(product3);
-        feedMill.add(product4);
-        feedMill.add(product5);
-        feedMill.add(product6);
-        feedMill.add(product7);
+        for (ProductImpl product : productList) {
+            feedMill.add(product);
+        }
 
         Callable<FeedMill> t = new ConsumeProductThread(barn, feedMill);
         Future<FeedMill> result = executorService.submit(t);

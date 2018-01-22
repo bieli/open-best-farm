@@ -5,7 +5,7 @@ import spock.lang.Specification
 class ProductImplSpec extends Specification {
     def "should get all kinds of products by object ProductImpl and getKind method"() {
         given:
-        def Object kindValue = productKind
+        Object kindValue = productKind
 
         when:
         ProductImpl product = new ProductImpl((ProductKind) kindValue)

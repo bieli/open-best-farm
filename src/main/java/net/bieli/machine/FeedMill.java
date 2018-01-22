@@ -45,10 +45,11 @@ public class FeedMill extends ProductList implements MachineActions, Producer, T
     }
 
     private Integer nextTick(ProductImpl product) {
-        Integer idx = super.list.indexOf(product);
-        ProductImpl productStored = super.list.get(idx);
+        Integer idx = super.products.indexOf(product);
+        ProductImpl productStored = super.products.get(idx);
 
-        if (productStored.tick() <= product.getKind().ticks()) {
+        if (productStored.getTick() < product.getKind().ticks()) {
+            productStored.tick();
             isProccessed = true;
         } else {
             isProccessed = false;
@@ -60,5 +61,10 @@ public class FeedMill extends ProductList implements MachineActions, Producer, T
     @Override
     public void start() {
         isProccessed = true;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("limit: %d, str: %s", super.limit, super.toString());
     }
 }

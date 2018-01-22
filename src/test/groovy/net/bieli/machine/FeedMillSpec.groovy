@@ -103,31 +103,35 @@ class FeedMillSpec extends Specification {
         !feedMill.isProccessed()
     }
 
-    def "Run"() {
+    def "should proccessed EGG in 3 ticks"() {
+        given:
+        def product1 = new ProductImpl(ProductKind.EGG)
 
+        def limit = 2
+        def feedMill = new FeedMill(limit)
+
+        feedMill.add(product1)
+
+        when:
+        feedMill.run(product1)
+
+        feedMill.isProccessed()
+        while (feedMill.isProccessed()) {
+            feedMill.tick()
+        }
+        feedMill.isProccessed()
+
+        and:
+        feedMill.isProccessed()
+        while (feedMill.isProccessed()) {
+            feedMill.tick()
+        }
+
+        then:
+        !feedMill.isProccessed()
     }
 
-    def "IsProccessed"() {
-
-    }
-
-    def "Stop"() {
-
-    }
-
-    def "Proccess"() {
-
-    }
-
-    def "GetSecondsToEnd"() {
-
-    }
-
-    def "Tick"() {
-
-    }
-
-    def "Start"() {
-
-    }
+//    def "GetSecondsToEnd"() {
+//
+//    }
 }

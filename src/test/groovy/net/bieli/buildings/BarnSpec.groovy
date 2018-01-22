@@ -1,36 +1,12 @@
 package net.bieli.buildings
 
-import junit.framework.Assert
 import net.bieli.excaptions.CapacityExceededException
 import net.bieli.product.ProductImpl
 import net.bieli.product.ProductKind
 import spock.lang.Specification
 
-import static junit.framework.TestCase.assertEquals
 
-/**
- * Created by mbielak on 24.12.15.
- */
 class BarnSpec extends Specification {
-    def "GetStorageAvailableCapacity"() {
-
-    }
-
-    def "SetStorageCapacity"() {
-
-    }
-
-    def "GetAllProductsList"() {
-
-    }
-
-    def "Pop"() {
-
-    }
-
-    def "Add"() {
-
-    }
 
     def "should get all products count"() {
         given:
@@ -67,8 +43,8 @@ class BarnSpec extends Specification {
         def final expectedProductCount = 1
         def barn = new Barn(capacity)
 
-        def ProductImpl product1 = new ProductImpl(ProductKind.MILK)
-        def ProductImpl product2 = new ProductImpl(ProductKind.CREAM)
+        ProductImpl product1 = new ProductImpl(ProductKind.MILK)
+        ProductImpl product2 = new ProductImpl(ProductKind.CREAM)
 
         barn.add(product1)
         barn.add(product2)
@@ -129,5 +105,19 @@ class BarnSpec extends Specification {
 
         then:
         thrown(CapacityExceededException)
+    }
+
+    def "should got UUID after add product to barn"() {
+        given:
+        def final capacity = 1
+        def barn = new Barn(capacity)
+
+        ProductImpl product1 = new ProductImpl(ProductKind.EGG)
+
+        when:
+        String uuid = barn.add(product1)
+
+        then:
+        uuid.length()
     }
 }

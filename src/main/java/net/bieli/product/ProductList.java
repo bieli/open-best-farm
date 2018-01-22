@@ -1,17 +1,13 @@
 package net.bieli.product;
 
 import net.bieli.excaptions.CapacityExceededException;
+import net.bieli.tools.UuidGenerator;
 
-import java.util.List;
-import java.util.Set;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 public class ProductList {
-    protected List<ProductImpl> list = new ArrayList<ProductImpl>();
+    protected Integer limit = 0;
+    protected List<ProductImpl> products = new ArrayList<>();
     protected Map<String, Integer> kindCountsMap = new LinkedHashMap<>();
 
     public ProductList(Integer limit) {
@@ -26,46 +22,47 @@ public class ProductList {
         this.limit = limit;
     }
 
-    protected Integer limit = 0;
-
     public Integer getAllProductsCount() {
-        return list.size();
+        return products.size();
     }
 
     public Integer countByKind(ProductKind productKind) {
-        return Collections.frequency(list, new ProductImpl(productKind));
+        return Collections.frequency(products, new ProductImpl(productKind));
     }
 
     public ProductImpl pop(ProductImpl product) {
-        list.remove(product);
+        products.remove(product);
 
         return product;
     }
 
-    public void add(ProductImpl product) throws Exception {
-        if (list.size() >= limit) {
-            throw new CapacityExceededException("Product list is FULL ! Please, consume product first and next try ADD !");
+    public UUID add(ProductImpl product) throws Exception {
+        if (products.size() >= limit) {
+            throw new CapacityExceededException("Product products is FULL ! Please, consume product first and next try ADD !");
         }
 
-        list.add(product);
+        products.add(product);
+        return UuidGenerator.get();
     }
 
     public String report() {
         StringBuilder report = new StringBuilder();
 
-        Set<ProductImpl> uniqueSet = new LinkedHashSet<>(list);
+        Set<ProductImpl> uniqueSet = new LinkedHashSet<>(products);
         report.append(String.format(
-                "| %8s | %8s |\n+----------+----------+\n",
+                "| %8s | %8s | %8s |\n+----------+----------+----------+\n",
                 "name",
-                "count"
+                "count",
+                "ticks"
         ));
 
         for (ProductImpl product : uniqueSet) {
-            kindCountsMap.put(product.getKind().name(), Collections.frequency(list, product));
+            kindCountsMap.put(product.getKind().name(), Collections.frequency(products, product));
             report.append(String.format(
-                    "| %8s | %8d |\n",
+                    "| %8s | %8d | %8d |\n",
                     product.getKind().name(),
-                    Collections.frequency(list, product)
+                    Collections.frequency(products, product),
+                    product.getKind().ticks()
             ));
         }
 
@@ -77,6 +74,6 @@ public class ProductList {
     }
 
     public Set<ProductImpl> getUniqueProductsSet() {
-        return new LinkedHashSet<>(list);
+        return new LinkedHashSet<>(products);
     }
 }
