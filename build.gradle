@@ -19,7 +19,7 @@ apply plugin: 'java'
 apply plugin: "groovy"
 apply plugin: 'application'
 
-mainClassName = 'net.bieli.Main'
+mainClassName = 'net.bieli.MainExecutorService'
 
 version = "1.0"
 
