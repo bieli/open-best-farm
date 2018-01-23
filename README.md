@@ -3,7 +3,7 @@
 
 
 How to start
---------------
+------------
 
 ```
 
@@ -106,13 +106,117 @@ BUILD SUCCESSFUL in 4s
 
 ```
 
+REST API for game server
+---------------
+
+Creating object:
+
+- POST /api/object
+    - /{type}
+    - /{name}
+
+where {type}s:
+ - barn
+ - mill_machine
+ - field
+
+
+```
+curl -H "Content-Type: application/json; charset=utf-8"\
+ -X POST 'http://localhost:8099/api/object'\
+ -d '{"name":"barn1","type":"BARN"}'
+
+Response HTTP 201: {"id": <UUID>}
+```
+
+Get all objects with ids and names:
+
+- GET /api/object
+
+
+```
+curl -H "Content-Type: application/json; charset=utf-8"\
+ -X GET 'http://localhost:8099/api/object'\
+
+Response HTTP 200: [{"id": <UUID>, "name":"little barn"}, {"id": <UUID>, "name":"first mill machine"}]
+```
+
+Creating product:
+
+- POST /api/product
+    - /{type}
+    - /quantity
+
+where {type}s:
+ - EGG
+ - MILK
+ - CORN
+
+
+```
+curl -H "Content-Type: application/json; charset=utf-8"\
+ -X POST 'http://localhost:8099/api/product'\
+ -d '{"type":"EGG", "quantity": 1}'
+
+Response HTTP 201: {"id": <UUID>}
+```
+
+Adding product into dedicated machine for proccessing:
+
+- POST /api/production
+    - /{product_id}
+    - /{object_id}
+
+where {type}s:
+ - EGG
+ - MILK
+ - CORN
+
+
+```
+curl -H "Content-Type: application/json; charset=utf-8"\
+ -X POST 'http://localhost:8099/api/production'\
+ -d '{"prodct_id":"<UUID>", "object_id":"<UUID>"}'
+ 
+Response HTTP 201: {"proccess_id": <UUID>}
+```
+
+Getting production proccess status:
+
+
+- GET /api/production/proccess/status/{proccess_id}
+    - {proccess_id} - result from POST /api/production
+
+```
+curl -H "Content-Type: application/json; charset=utf-8"\
+ -X GET 'http://localhost:8099/api/production/proccess/status/<UUID>'\
+
+Response HTTP 200: {"prodct_id":"<UUID>", "tick":3, "ticks": 5}
+```
+
+Getting production proccess status by product:
+
+
+- GET /api/production/product/{product_id}/status
+    - {{product_id}} - product id
+
+```
+curl -H "Content-Type: application/json; charset=utf-8"\
+ -X GET 'http://localhost:8099/api/production/product/<UUID>/status'\
+
+Response HTTP 200: {"prodct_id":"<UUID>", "tick":2, "ticks": 8}
+```
+
+
+
 TODOs
 -----
 
 - [x] create repository with first conceptual version
 - [x] creating state machine prototype
 - [x] adding conccurent usage example and unit tests
-- [ ] create document/concept with REST API for "farm like" games
+- [?] creating document/concept with REST API for "farm like" games
+- [x] creating Swagger API doc (http://localhost:8099/v2/api-docs)
 - [ ] REST API prototype (with storage in RAM) with integration tests
 - [ ] try to self-consume REST API service in simple game with GUI / UI
 - [ ] implementing persistent storage (i.e. RIAK, Couchbase, Redis, MySQL/MariaDB, MongoDB, ...)
